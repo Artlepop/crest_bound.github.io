@@ -3,7 +3,7 @@
     height: 420px;
     border: 3px double white;
     position: absolute;
-    left: 270px;
+    left: 260px;
     top: 10px;
     overflow: hidden;
 }
@@ -33,6 +33,16 @@
     to{
         transform: translate3d(-100%, 0, 0);
     }
+}
+
+.statUI{
+    position: absolute;
+    border: 3px double white;
+    background-color: black;
+    height: 206px;
+    width: 320px;
+    left: 260px;
+    top: 440px;
 }
 
 .all-stats{
@@ -94,4 +104,3 @@
     left: 65px;
     top: 2px;
 }
-
