@@ -1,0 +1,97 @@
+.character{
+    width: 320px;
+    height: 420px;
+    border: 3px double white;
+    position: absolute;
+    left: 270px;
+    top: 10px;
+    overflow: hidden;
+}
+
+#character-background{
+    width: 320px;
+    height: 520px;
+    position: absolute;
+    image-rendering: pixelated;
+    top: -100px;
+}
+
+#character-sprite{
+    position: absolute;
+    width: 1,536px;
+    height: 384px;
+    image-rendering: pixelated;
+    left: -25px;
+    top: 20px;
+    animation: moveSpriteSheet 1s steps(4) infinite;
+}
+
+@keyframes moveSpriteSheet{
+    from{
+        transform: translate3d(0px, 0, 0);
+    }
+    to{
+        transform: translate3d(-100%, 0, 0);
+    }
+}
+
+.all-stats{
+    position: absolute;
+    height: 636px;
+    width: 240px;
+    border: 3px double white;
+    background-color: black;
+    top: 10px;
+    left: 10px;
+}
+
+.bstats{
+    height: 188px;
+    width: 220px;
+    position: relative;
+    border: 2px solid white;
+    background-color: black;
+    margin-top: 10px;
+    margin-left: 7px;
+}
+
+.bstats h1{
+    font-size: 12px;
+    color: white;
+    position: relative;
+    margin-bottom: -5px;
+    left: 5px;
+}
+
+#bstats-title{
+    font-size: 20px;
+    margin-top: -2px;
+    left: 62px;
+    top: 2px;
+}
+
+.sstats{
+    height: 410px;
+    width: 220px;
+    position: relative;
+    border: 2px solid white;
+    background-color: black;
+    margin-top: 10px;
+    margin-left: 7px;
+}
+
+.sstats h1{
+    font-size: 12px;
+    color: white;
+    position: relative;
+    margin-bottom: -5px;
+    left: 5px;
+}
+
+#sstats-title{
+    font-size: 20px;
+    margin-top: -2px;
+    left: 65px;
+    top: 2px;
+}
+
