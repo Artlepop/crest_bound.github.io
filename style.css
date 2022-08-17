@@ -1,3 +1,13 @@
+h1{
+    user-select: none;
+    -ms-user-select: none;
+}
+
+div{
+    user-select: none;
+    -ms-user-select: none;
+}
+
 .character{
     width: 320px;
     height: 420px;
@@ -43,6 +53,55 @@
     width: 320px;
     left: 260px;
     top: 440px;
+}
+
+.statUI-button{
+    background-color: #101010;
+    position: relative;
+    left: 40px;
+    margin-bottom: 30px;
+    margin-top: 25px;
+    height: 60px;
+    width: 240px;
+    border-bottom: 2px solid white;
+    border-top: 2px solid white;
+    color: white;
+    transition: color 0.2s, border-bottom 0.2s, border-top 0.2s;
+}
+
+.statUI-button:hover{
+    background-color: #101010;
+    position: relative;
+    left: 40px;
+    margin-bottom: 30px;
+    margin-top: 25px;
+    height: 60px;
+    width: 240px;
+    border-bottom: 2px solid red;
+    border-top: 2px solid red;
+    color: red;
+}
+
+.statUI-button:active{
+    background-color: #101010;
+    position: relative;
+    left: 40px;
+    margin-bottom: 30px;
+    margin-top: 25px;
+    height: 60px;
+    width: 240px;
+    border-bottom: 2px solid rgb(110, 0, 0);
+    border-top: 2px solid rgb(110, 0, 0);
+    color: rgb(110, 0, 0);
+}
+
+#statUI-button-b{
+    text-align: center;
+    position: relative;
+    top: 16px;
+    font-size: 25px;
+    user-select: none;
+    -ms-user-select: none;
 }
 
 .all-stats{
@@ -103,4 +162,22 @@
     margin-top: -2px;
     left: 65px;
     top: 2px;
+}
+
+#speed{
+    float: right;
+    position: relative;
+    margin-right: 10px;
+    top: -20px;
+}
+
+#staminaRecovery{
+    position: absolute;
+    left: 93px;
+}
+
+#manaRecovery{
+    position: absolute;
+    margin-top: 27px;
+    left: 105px;
 }
