@@ -12,7 +12,13 @@
         </div>
 
         <div class="statUI">
-            
+            <div class="statUI-button">
+                <div id="statUI-button-b" onclick="addLevel()">Level Up</div>
+            </div>
+
+            <div class="statUI-button">
+                <div id="statUI-button-b" onclick="createStats()">Character Reset</div>
+            </div>
         </div>
 
         <div class="all-stats">
@@ -20,50 +26,237 @@
                 <h1 id="bstats-title">Base Stats:</h1>
                 <hr>
     
-                <h1>Level - 0</h1>
-                <h1>Element - ???</h1>
+                <h1 id="level">Level - 0</h1>
+                <h1 id="element">Element - ???</h1>
                 <hr>
-                <h1>Will - ???</h1>
-                <h1>Intelligence - ???</h1>
-                <h1>Strength - ???</h1>
-                <h1>Constitution - ???</h1>
-                <h1>Dexterity - ???</h1>
-                <h1>Magic - ???</h1>
+                <h1 id="will">Will - ???</h1>
+                <h1 id="intelligence">Intelligence - ???</h1>
+                <h1 id="strength">Strength - ???</h1>
+                <h1 id="constitution">Constitution - ???</h1>
+                <h1 id="dexterity">Dexterity - ???</h1>
+                <h1 id="magic">Magic - ???</h1>
             </div>
             
             <div class="sstats">
                 <h1 id="sstats-title">Sub Stats:</h1>
     
                 <hr>
-                <h1>Increased Card Level Up Chance - ???</h1>
-                <h1>Near Death Stat Bonuses - ???</h1>
+                <h1 id="cardLevelUpChance">Card Level Up Chance - ???</h1>
+                <h1 id="nearDeathStatBonuses">Near Death Stat Bonuses - ???</h1>
                 <hr>
     
-                <h1>Crit Damage - ???</h1>
+                <h1 id="critDamage">Crit Damage - ???</h1>
                 <hr>
     
-                <h1>Physical Crit Damage - ???</h1>
-                <h1>Physical Damage - ???</h1>
-                <h1>Physical Defense - ???</h1>
+                <h1 id="pCritDamage">Physical Crit Damage - ???</h1>
+                <h1 id="pDamage">Physical Damage - ???</h1>
+                <h1 id="pDefense">Physical Defense - ???</h1>
                 <hr>
     
-                <h1>Magic Crit Damage - ???</h1>
-                <h1>Magic Damage - ???</h1>
-                <h1>Magic Defense - ???</h1>
-                <h1>Magic Resistance - ???</h1>
+                <h1 id="mCritDamage">Magic Crit Damage - ???</h1>
+                <h1 id="mDamage">Magic Damage - ???</h1>
+                <h1 id="mDefense">Magic Defense - ???</h1>
+                <h1 id="mResistance">Magic Resistance - ???</h1>
                 <hr>
                 
-                <h1>Dodge - ???</h1>
-                <h1>Parry - ???</h1>
-                <h1>Block - ???</h1>
-                <h1>Counter - ???</h1>
+                <h1 id="dodge">Dodge - ???</h1>
+                <h1 id="parry">Parry - ???</h1>
+                <h1 id="block">Block - ???</h1>
+                <h1 id="counter">Counter - ???</h1>
                 <hr>
     
-                <h1>Health - ???</h1>
-                <h1>Stamina - ???</h1>
-                <h1>Mana - ???</h1>
-                <h1>Accuracy - ???</h1>
+                <h1 id="health">Health - ???</h1>
+                <h1 id="speed">Speed - ???</h1>
+                <h1 id="staminaRecovery">Stamina Recovery - ???</h1>
+                <h1 id="manaRecovery">Mana Recovery - ???</h1>
+                <h1 id="stamina">Stamina - ???</h1>
+                <h1 id="mana">Mana - ???</h1>
+                <h1 id="accuracy">Accuracy - ???</h1>
             </div>
         </div>
+
+        <script>
+            //Base Stats
+            var level = 0;
+            var element = "null"
+            var will = 0;
+            var intelligence = 0;
+            var strength = 0;
+            var constitution = 0;
+            var dexterity = 0;
+            var magic = 0;
+
+            //Sub Stats
+            var cardLevelUpChance = 0;
+            var nearDeathStatBonuses = 0;
+            var critDamage = 0;
+
+            //Base Elements
+            var baseElements = ["Fire", "Earth", "Water", "Air", "Life", "Death"];
+
+            //Base Stat Tags
+            const levelTag = document.getElementById("level");
+            const elementTag = document.getElementById("element");
+            const willTag = document.getElementById("will");
+            const intelligenceTag = document.getElementById("intelligence");
+            const strengthTag = document.getElementById("strength");
+            const constitutionTag = document.getElementById("constitution");
+            const dexterityTag = document.getElementById("dexterity");
+            const magicTag = document.getElementById("magic");
+
+            //Sub Stat Tags
+            const cardLevelUpChanceTag = document.getElementById("cardLevelUpChance");
+            const nearDeathStatBonusesTag = document.getElementById("nearDeathStatBonuses");
+            const critDamageTag = document.getElementById("critDamage");
+
+            createStats();
+
+            function createStats(){
+                level = 1;
+
+                baseElements = ["Fire", "Earth", "Water", "Air", "Life", "Death"];
+
+                assignElements();
+
+                will = baseStatGen();
+                intelligence = baseStatGen();
+                strength = baseStatGen();
+                constitution = baseStatGen();
+                dexterity = baseStatGen();
+                magic = baseStatGen();
+
+                //0.30285343 max is 8-9% 0.23112042 max is 4.8%
+                cardLevelUpChance = (0.30285343 * Math.pow(intelligence, 0.66)) + ( (will/100) + 0.08 ) + 0.64;
+                cardLevelUpChance = Math.round(cardLevelUpChance * 100) / 100;
+
+                nearDeathStatBonuses = (((Math.pow(1.01, will) + 3) / 0.15) - 23) + 0.15;
+                nearDeathStatBonuses = Math.round(nearDeathStatBonuses * 100) / 100;
+
+                critDamage = 0.03
+                critDamage += (Math.log10(1000 * will + 0.8)) - 2.5;
+                critDamage += (Math.log10(1000 * intelligence + 0.8)) - 2.5;
+                critDamage += (Math.log10(1000 * strength + 0.8)) - 2.5;
+                critDamage += (Math.log10(1000 * constitution + 0.8)) - 2.5;
+                critDamage += (Math.log10(1000 * dexterity + 0.8)) - 2.5;
+                critDamage += (Math.log10(1000 * magic + 0.8)) - 2.5;
+                critDamage = Math.round(critDamage * 100) / 100;
+
+                linkStats();
+            }
+
+            function addLevel(){
+                level += 1;
+                linkStats();
+            }
+
+            function linkStats(){
+                
+                levelTag.innerHTML = "Level - " + level;
+
+                //Link Element
+                elementTag.innerHTML = "Element - " + element;
+
+                //Link Base Stat Tags
+                willTag.innerHTML = "Will - " + will;
+                intelligenceTag.innerHTML = "Intelligence - " + intelligence;
+                strengthTag.innerHTML = "Strength - " + strength;
+                constitutionTag.innerHTML = "Constitution - " + constitution;
+                dexterityTag.innerHTML = "Dexterity - " + dexterity;
+                magicTag.innerHTML = "Magic - " + magic;
+
+                //Link Sub Stat Tags
+                cardLevelUpChanceTag.innerHTML = "Card Level Up Chance - " + cardLevelUpChance + "%";
+                nearDeathStatBonusesTag.innerHTML = "Near Death Stat Bonuses - " + nearDeathStatBonuses + "%";
+                critDamageTag.innerHTML = "Crit Damage - " + critDamage + "%";
+            }
+
+            function baseStatGen(){
+                var chance = randomNumGen(1, 100);
+                if(chance <= 5){
+                    return randomNumGen(1, 14);
+                }
+                else if(chance > 5 && chance <= 25){
+                    return randomNumGen(15, 29);
+                }
+                else if(chance > 25 && chance <= 75){
+                    return randomNumGen(30, 60);
+                }
+                else if(chance > 75 && chance <= 95){
+                    return randomNumGen(61, 75);
+                }
+                else{
+                    return randomNumGen(76, 100);
+                }
+            }
+
+            function assignElements(){
+                var chance = randomNumGen(1, 100);
+                if(chance <= 75){
+                    loopElements(0);
+                }
+                else if(chance > 75 && chance < 95){
+                    loopElements(1);
+                }
+                else{
+                    loopElements(2)
+                }
+
+                chance = randomNumGen(1, 100);
+                if(chance <= 15){
+                    if(element.includes('Water') && element.includes('Earth') && element.includes('Life')){
+                        element += ', Plant';
+                    }
+                    else if(element.includes('Fire') && element.includes('Water')){
+                        element += ', Steam';
+                    }
+                    else if(element.includes('Life') && element.includes('Death')){
+                        element += ', Undead';
+                    }
+                    else if(element.includes('Fire') && element.includes('Earth')){
+                        element += ', Lava';
+                    }
+                    else if(element.includes('Water') && element.includes('Death')){
+                        element += ', Poison';
+                    }
+                    else if(element.includes('Fire')){
+                        element += ', Plasma';
+                    }
+                    else if(element.includes('Earth')){
+                        element += ', Metal';
+                    }
+                    else if(element.includes('Air')){
+                        element += ', Space';
+                    }
+                    else if(element.includes('Life')){
+                        element += ', Spirit';
+                    }
+                    else if(element.includes('Death')){
+                        element += ', Demonic';
+                    }
+                }
+            }
+
+            function loopElements(num){
+                var elementNum = randomNumGen(0, baseElements.length)
+                element = baseElements[elementNum];
+                baseElements.splice(elementNum, 1);
+
+                if(num == 0)
+                {
+                    return;
+                }
+                else{
+                    for(let i = 0; i < num; i++){
+                        var elementNum = randomNumGen(0, baseElements.length)
+                        element += ", " + baseElements[elementNum];
+                        baseElements.splice(elementNum, 1);
+                    }
+                }
+            }
+
+            function randomNumGen(min, max){
+                return(Math.floor(Math.random() * (max - min) + min));
+            }
+        </script>
     </body>
 </html>
