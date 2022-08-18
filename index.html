@@ -26,52 +26,52 @@
                 <h1 id="bstats-title">Base Stats:</h1>
                 <hr>
     
-                <h1 id="level">Level - 0</h1>
-                <h1 id="element">Element - ???</h1>
+                <h1 id="level">Level: 0</h1>
+                <h1 id="element">Element: ???</h1>
                 <hr>
-                <h1 id="will">Will - ???</h1>
-                <h1 id="intelligence">Intelligence - ???</h1>
-                <h1 id="strength">Strength - ???</h1>
-                <h1 id="constitution">Constitution - ???</h1>
-                <h1 id="dexterity">Dexterity - ???</h1>
-                <h1 id="magic">Magic - ???</h1>
+                <h1 id="will">Will: ???</h1>
+                <h1 id="intelligence">Intelligence: ???</h1>
+                <h1 id="strength">Strength: ???</h1>
+                <h1 id="constitution">Constitution: ???</h1>
+                <h1 id="dexterity">Dexterity: ???</h1>
+                <h1 id="magic">Magic: ???</h1>
             </div>
             
             <div class="sstats">
                 <h1 id="sstats-title">Sub Stats:</h1>
     
                 <hr>
-                <h1 id="cardLevelUpChance">Card Level Up Chance - ???</h1>
-                <h1 id="nearDeathStatBonuses">Near Death Stat Bonuses - ???</h1>
+                <h1 id="cardLevelUpChance">Card Level Up Chance: ???</h1>
+                <h1 id="nearDeathStatBonuses">Near Death Stat Bonuses: ???</h1>
                 <hr>
     
-                <h1 id="critDamage">Crit Damage - ???</h1>
+                <h1 id="critChance">Crit Chance: ???</h1>
                 <hr>
     
-                <h1 id="pCritDamage">Physical Crit Damage - ???</h1>
-                <h1 id="pDamage">Physical Damage - ???</h1>
-                <h1 id="pDefense">Physical Defense - ???</h1>
+                <h1 id="pCritDamage">Physical Crit Damage: ???</h1>
+                <h1 id="pDamage">Physical Damage: ???</h1>
+                <h1 id="pDefense">Physical Defense: ???</h1>
                 <hr>
     
-                <h1 id="mCritDamage">Magic Crit Damage - ???</h1>
-                <h1 id="mDamage">Magic Damage - ???</h1>
-                <h1 id="mDefense">Magic Defense - ???</h1>
-                <h1 id="mResistance">Magic Resistance - ???</h1>
+                <h1 id="mCritDamage">Magic Crit Damage: ???</h1>
+                <h1 id="mDamage">Magic Damage: ???</h1>
+                <h1 id="mDefense">Magic Defense: ???</h1>
+                <h1 id="mResistance">Magic Resistance: ???</h1>
                 <hr>
                 
-                <h1 id="dodge">Dodge - ???</h1>
-                <h1 id="parry">Parry - ???</h1>
-                <h1 id="block">Block - ???</h1>
-                <h1 id="counter">Counter - ???</h1>
+                <h1 id="dodge">Dodge: ???</h1>
+                <h1 id="parry">Parry: ???</h1>
+                <h1 id="block">Block: ???</h1>
+                <h1 id="counter">Counter: ???</h1>
                 <hr>
     
-                <h1 id="health">Health - ???</h1>
-                <h1 id="speed">Speed - ???</h1>
-                <h1 id="staminaRecovery">Stamina Recovery - ???</h1>
-                <h1 id="manaRecovery">Mana Recovery - ???</h1>
-                <h1 id="stamina">Stamina - ???</h1>
-                <h1 id="mana">Mana - ???</h1>
-                <h1 id="accuracy">Accuracy - ???</h1>
+                <h1 id="health">Health: ???</h1>
+                <h1 id="speed">Speed: ???</h1>
+                <h1 id="staminaRecovery">Stamina Recovery: ???</h1>
+                <h1 id="manaRecovery">Mana Recovery: ???</h1>
+                <h1 id="stamina">Stamina: ???</h1>
+                <h1 id="mana">Mana: ???</h1>
+                <h1 id="accuracy">Accuracy: ???</h1>
             </div>
         </div>
 
@@ -89,7 +89,8 @@
             //Sub Stats
             var cardLevelUpChance = 0;
             var nearDeathStatBonuses = 0;
-            var critDamage = 0;
+            var critChance = 0;
+            var health = 0;
 
             //Base Elements
             var baseElements = ["Fire", "Earth", "Water", "Air", "Life", "Death"];
@@ -107,7 +108,8 @@
             //Sub Stat Tags
             const cardLevelUpChanceTag = document.getElementById("cardLevelUpChance");
             const nearDeathStatBonusesTag = document.getElementById("nearDeathStatBonuses");
-            const critDamageTag = document.getElementById("critDamage");
+            const critChanceTag = document.getElementById("critChance");
+            const healthTag = document.getElementById("health");
 
             createStats();
 
@@ -132,14 +134,23 @@
                 nearDeathStatBonuses = (((Math.pow(1.01, will) + 3) / 0.15) - 23) + 0.15;
                 nearDeathStatBonuses = Math.round(nearDeathStatBonuses * 100) / 100;
 
-                critDamage = 0.03
-                critDamage += (Math.log10(1000 * will + 0.8)) - 2.5;
-                critDamage += (Math.log10(1000 * intelligence + 0.8)) - 2.5;
-                critDamage += (Math.log10(1000 * strength + 0.8)) - 2.5;
-                critDamage += (Math.log10(1000 * constitution + 0.8)) - 2.5;
-                critDamage += (Math.log10(1000 * dexterity + 0.8)) - 2.5;
-                critDamage += (Math.log10(1000 * magic + 0.8)) - 2.5;
-                critDamage = Math.round(critDamage * 100) / 100;
+                critChance = 0.03
+                critChance += (Math.log10(1000 * will + 0.8)) - 2.5;
+                critChance += (Math.log10(1000 * intelligence + 0.8)) - 2.5;
+                critChance += (Math.log10(1000 * strength + 0.8)) - 2.5;
+                critChance += (Math.log10(1000 * constitution + 0.8)) - 2.5;
+                critChance += (Math.log10(1000 * dexterity + 0.8)) - 2.5;
+                critChance += (Math.log10(1000 * magic + 0.8)) - 2.5;
+                critChance = Math.round(critChance * 100) / 100;
+
+                if(constitution <= 50){
+                    health = Math.round((Math.log10(10 * Math.pow(constitution, 4))) + 14);
+                }
+                else{
+                    health = Math.round((Math.pow(Math.E, (constitution * 0.065 - 4.3))) + 21.45);
+                }
+                health += Math.round( -(strength/20) + 5 );
+                health += Math.round( -(will/20) + 5 );
 
                 linkStats();
             }
@@ -151,23 +162,24 @@
 
             function linkStats(){
                 
-                levelTag.innerHTML = "Level - " + level;
+                levelTag.innerHTML = "Level: " + level;
 
                 //Link Element
-                elementTag.innerHTML = "Element - " + element;
+                elementTag.innerHTML = "Element: " + element;
 
                 //Link Base Stat Tags
-                willTag.innerHTML = "Will - " + will;
-                intelligenceTag.innerHTML = "Intelligence - " + intelligence;
-                strengthTag.innerHTML = "Strength - " + strength;
-                constitutionTag.innerHTML = "Constitution - " + constitution;
-                dexterityTag.innerHTML = "Dexterity - " + dexterity;
-                magicTag.innerHTML = "Magic - " + magic;
+                willTag.innerHTML = "Will: " + will;
+                intelligenceTag.innerHTML = "Intelligence: " + intelligence;
+                strengthTag.innerHTML = "Strength: " + strength;
+                constitutionTag.innerHTML = "Constitution: " + constitution;
+                dexterityTag.innerHTML = "Dexterity: " + dexterity;
+                magicTag.innerHTML = "Magic: " + magic;
 
                 //Link Sub Stat Tags
-                cardLevelUpChanceTag.innerHTML = "Card Level Up Chance - " + cardLevelUpChance + "%";
-                nearDeathStatBonusesTag.innerHTML = "Near Death Stat Bonuses - " + nearDeathStatBonuses + "%";
-                critDamageTag.innerHTML = "Crit Damage - " + critDamage + "%";
+                cardLevelUpChanceTag.innerHTML = "Card Level Up Chance: " + cardLevelUpChance + "%";
+                nearDeathStatBonusesTag.innerHTML = "Near Death Stat Bonuses: " + nearDeathStatBonuses + "%";
+                critChanceTag.innerHTML = "Crit Chance: " + critChance + "%";
+                healthTag.innerHTML = "Health: " + health + "p";
             }
 
             function baseStatGen(){
